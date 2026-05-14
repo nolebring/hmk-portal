@@ -4,274 +4,275 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HMK Personalportal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --teal: #718B94;
+    --teal-dark: #4a6670;
+    --teal-light: #8fa5ad;
+    --gold: #C1A051;
+    --gold-light: #d4b870;
+    --dark: #282626;
+    --soft: #D0D6CC;
+    --olive: #AAACA0;
+    --bg: #eef0ee;
+    --white: #ffffff;
+    --radius: 14px;
+    --shadow: 0 4px 24px rgba(40,38,38,0.10);
+    --shadow-hover: 0 8px 32px rgba(40,38,38,0.18);
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', sans-serif; background: #718B94; }
-  .header { background: #fff; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #C1A051; }
-  .header-logo { height: 52px; width: auto; }
-  .date-chip { background: #718B94; color: #fff; font-size: 12px; padding: 5px 14px; border-radius: 20px; }
-  .greeting { background: rgba(0,0,0,0.15); padding: 8px 28px; }
-  .greeting p { color: #fff; font-size: 12px; }
-  .greeting strong { color: #C1A051; }
-  .content { padding: 16px 28px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-  .card { background: #fff; border-radius: 10px; overflow: hidden; }
-  .card-header { background: #718B94; padding: 8px 14px; display: flex; align-items: center; gap: 8px; }
-  .card-header span { color: #fff; font-size: 12px; font-weight: 500; }
-  .card-header svg { width: 14px; height: 14px; flex-shrink: 0; }
-  .card-body { padding: 12px 14px; }
-  .bible-card-header { background: #C1A051 !important; }
-  .bible-verse { font-size: 14px; color: #282626; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
-  .bible-ref { font-size: 11px; color: #718B94; font-weight: 500; }
-  .weather-main { display: flex; align-items: center; gap: 12px; padding: 4px 0 8px; }
-  .weather-temp { font-size: 32px; font-weight: 500; color: #282626; }
-  .weather-desc { font-size: 12px; color: #818979; }
-  .weather-loc { font-size: 10px; color: #AAACA0; }
-  .weather-row { display: flex; justify-content: space-between; border-top: 0.5px solid #e8e5e0; padding-top: 8px; }
-  .weather-item .label { font-size: 10px; color: #AAACA0; }
-  .weather-item .val { font-size: 12px; color: #282626; font-weight: 500; }
-  .news-item { padding: 6px 0; border-bottom: 0.5px solid #f0ede8; }
-  .news-item:last-child { border-bottom: none; }
-  .news-source { font-size: 10px; color: #C1A051; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
-  .news-title { font-size: 11px; color: #282626; line-height: 1.35; margin-top: 2px; }
-  .news-title a { color: #282626; text-decoration: none; }
-  .news-title a:hover { color: #718B94; }
-  .news-time { font-size: 10px; color: #AAACA0; margin-top: 1px; }
-  .news-error { font-size: 11px; color: #AAACA0; font-style: italic; }
-  .links-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
-  .link-btn { background: #f5f5f3; border: 0.5px solid #D0D6CC; border-radius: 8px; padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; text-align: center; text-decoration: none; transition: background 0.15s; }
-  .link-btn:hover { background: #D0D6CC; }
-  .link-btn svg { width: 20px; height: 20px; stroke: #718B94; fill: none; stroke-width: 2; }
-  .link-btn span { font-size: 11px; color: #282626; font-weight: 500; line-height: 1.2; }
-  .events-item { padding: 6px 0; border-bottom: 0.5px solid #f0ede8; display: flex; gap: 10px; align-items: center; }
-  .events-item:last-child { border-bottom: none; }
-  .event-date { background: #718B94; color: #fff; border-radius: 6px; width: 34px; height: 34px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
-  .event-date .day { font-size: 13px; font-weight: 500; line-height: 1; }
-  .event-date .month { font-size: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .event-info .title { font-size: 11px; color: #282626; font-weight: 500; }
-  .event-info .time { font-size: 10px; color: #818979; }
-  .full-width { grid-column: 1 / -1; }
-  .loading { font-size: 11px; color: #AAACA0; font-style: italic; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); min-height: 100vh; }
+  .header { background: var(--white); padding: 0 32px; height: 68px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(40,38,38,0.08); }
+  .header-logo { height: 44px; width: auto; }
+  .date-pill { background: var(--teal); color: var(--white); font-size: 12px; font-weight: 500; padding: 6px 16px; border-radius: 99px; letter-spacing: 0.03em; }
+  .greeting-strip { background: linear-gradient(90deg, var(--teal-dark), var(--teal)); padding: 10px 32px; }
+  .greeting-strip p { color: rgba(255,255,255,0.8); font-size: 13px; }
+  .greeting-strip strong { color: var(--gold-light); font-weight: 600; }
+  .main { padding: 22px 28px; display: grid; grid-template-columns: 1fr 300px; gap: 18px; max-width: 1400px; margin: 0 auto; }
+  .left-col { display: flex; flex-direction: column; gap: 14px; }
+  .right-col { display: flex; flex-direction: column; gap: 14px; }
+  .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: box-shadow 0.2s, transform 0.2s; animation: fadeUp 0.4s ease both; }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+  .ch { background: var(--teal); padding: 9px 15px; display: flex; align-items: center; gap: 8px; }
+  .ch.gold { background: var(--gold); }
+  .ch span { color: var(--white); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ch svg { width: 13px; height: 13px; stroke: rgba(255,255,255,0.9); fill: none; stroke-width: 2; flex-shrink: 0; }
+  .cb { padding: 13px 15px; }
+  /* Quicklinks */
+  .ql { display: grid; grid-template-columns: repeat(6,1fr); gap: 7px; }
+  .ql-btn { background: #f7f5f0; border: 1px solid #ece9e2; border-radius: 10px; padding: 11px 5px 9px; display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none; transition: all 0.15s; }
+  .ql-btn:hover { background: #ece9e2; border-color: var(--gold); transform: translateY(-2px); }
+  .ql-btn svg { width: 20px; height: 20px; stroke: var(--teal); fill: none; stroke-width: 1.8; }
+  .ql-btn span { font-size: 10px; color: var(--dark); font-weight: 500; text-align: center; line-height: 1.2; }
+  /* Bible */
+  .bv { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--dark); line-height: 1.7; font-style: italic; margin-bottom: 7px; }
+  .br { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .bi { width: 50px; height: 50px; background: linear-gradient(135deg,#f5efe0,#ede4c8); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .bi svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  /* Weather */
+  .wt { font-size: 38px; font-weight: 700; color: var(--dark); line-height: 1; }
+  .wd { font-size: 12px; color: var(--olive); margin-top: 2px; }
+  .wl { font-size: 9px; color: var(--teal-light); margin-top: 1px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .ws { display: flex; justify-content: space-between; border-top: 1px solid #f0ede8; margin-top: 9px; padding-top: 9px; }
+  .wsi .lbl { font-size: 9px; color: var(--olive); text-transform: uppercase; letter-spacing: 0.05em; }
+  .wsi .val { font-size: 12px; color: var(--dark); font-weight: 600; margin-top: 2px; }
+  /* News */
+  .ni { padding: 6px 0; border-bottom: 1px solid #f5f3ef; }
+  .ni:last-child { border-bottom: none; }
+  .ns { font-size: 9px; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+  .nt { font-size: 11px; color: var(--dark); line-height: 1.4; margin-top: 2px; }
+  .nt a { color: var(--dark); text-decoration: none; }
+  .nt a:hover { color: var(--teal); }
+  .ntm { font-size: 10px; color: var(--olive); margin-top: 2px; }
+  .ne { font-size: 11px; color: var(--olive); font-style: italic; }
+  /* Events */
+  .ei { display: flex; gap: 11px; align-items: center; padding: 6px 0; border-bottom: 1px solid #f5f3ef; }
+  .ei:last-child { border-bottom: none; }
+  .ed { background: linear-gradient(135deg,var(--teal-dark),var(--teal)); color: var(--white); border-radius: 8px; width: 36px; height: 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+  .ed .dy { font-size: 13px; font-weight: 700; line-height: 1; }
+  .ed .mn { font-size: 7px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.85; }
+  .et { font-size: 11px; color: var(--dark); font-weight: 600; }
+  .etm { font-size: 10px; color: var(--olive); margin-top: 1px; }
+  /* Row grids */
+  .row2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  /* Library cards */
+  .lib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .lib-card { border-radius: 9px; overflow: hidden; text-decoration: none; box-shadow: 0 2px 10px rgba(40,38,38,0.10); transition: transform 0.2s, box-shadow 0.2s; display: block; }
+  .lib-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(40,38,38,0.18); }
+  .lib-card img { width: 100%; display: block; }
+  /* Links panel */
+  .lp { background: linear-gradient(160deg,var(--teal-dark),var(--teal)); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); animation: fadeUp 0.4s ease 0.2s both; }
+  .lp-title { font-family: 'Playfair Display', serif; color: var(--white); font-size: 17px; font-weight: 600; margin-bottom: 15px; }
+  .lp-item { display: flex; align-items: center; gap: 11px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.12); text-decoration: none; }
+  .lp-item:last-of-type { border-bottom: none; }
+  .lp-icon { width: 30px; height: 30px; background: rgba(255,255,255,0.12); border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; }
+  .lp-icon svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.9); fill: none; stroke-width: 2; }
+  .lp-item:hover .lp-icon { background: rgba(193,160,81,0.35); }
+  .lp-txt { color: var(--white); font-size: 13px; font-weight: 500; }
+  .lp-sub { color: rgba(255,255,255,0.5); font-size: 10px; margin-top: 1px; }
+  .lp-item:hover .lp-txt { color: var(--gold-light); }
+  .lp-more { display: flex; align-items: center; gap: 5px; margin-top: 11px; color: rgba(255,255,255,0.45); font-size: 11px; }
+  .loading { font-size: 11px; color: var(--olive); font-style: italic; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <img class="header-logo" src="https://nolebring.github.io/hmk-portal/logo.png" alt="Hönö Missionskyrka" onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';">
-  <div id="logoText" style="display:none; font-size:18px; font-weight:500; color:#282626;">Hönö Missionskyrka</div>
-  <div class="date-chip" id="dateChip">Laddar...</div>
+  <img class="header-logo" src="https://nolebring.github.io/hmk-portal/logo.png" alt="Hönö Missionskyrka" onerror="this.style.display='none'">
+  <div class="date-pill" id="dateChip">Laddar...</div>
 </div>
-
-<div class="greeting">
+<div class="greeting-strip">
   <p>Välkommen tillbaka — <strong>Glad att du är här idag!</strong> Här hittar du allt du behöver för din arbetsdag.</p>
 </div>
 
-<div class="content">
+<div class="main">
+  <div class="left-col">
 
-  <div class="card full-width">
-    <div class="card-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#718B94" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-      <span>Snabblänkar</span>
-    </div>
-    <div class="card-body">
-      <div class="links-grid">
-        <a class="link-btn" href="#">
-          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          <span>Personalhandbok</span>
-        </a>
-        <a class="link-btn" href="#">
-          <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-          <span>Mina dokument</span>
-        </a>
-        <a class="link-btn" href="#">
-          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <span>Semesteransökan</span>
-        </a>
-        <a class="link-btn" href="#">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 1.09h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
-          <span>Sjukanmälan</span>
-        </a>
-        <a class="link-btn" href="#">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Policyer</span>
-        </a>
-        <a class="link-btn" href="#">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <span>Kontakter</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="card full-width">
-    <div class="card-header bible-card-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#C1A051" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      <span style="color:#C1A051;">Dagens bibelord</span>
-    </div>
-    <div class="card-body" style="display:flex; align-items:flex-start; gap:16px;">
-      <div style="flex:1;">
-        <div class="bible-verse" id="bibleVerse">Hämtar dagens bibelord...</div>
-        <div class="bible-ref" id="bibleRef"></div>
-      </div>
-      <div style="flex-shrink:0; width:60px; height:60px; background:#3a2e10; border-radius:8px; border:0.5px solid #C1A051; display:flex; align-items:center; justify-content:center;">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C1A051" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#718B94" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      <span>Väder — Hönö</span>
-    </div>
-    <div class="card-body">
-      <div class="weather-main">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C1A051" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <div>
-          <div class="weather-temp" id="wTemp">–°</div>
-          <div class="weather-desc" id="wDesc">Hämtar...</div>
-          <div class="weather-loc">Hönö, Öckerö</div>
+    <!-- Snabblänkar -->
+    <div class="card">
+      <div class="ch"><svg viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13,2 13,9 20,9"/></svg><span>Snabblänkar</span></div>
+      <div class="cb">
+        <div class="ql">
+          <a class="ql-btn" href="#"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span>Personal­handbok</span></a>
+          <a class="ql-btn" href="#"><svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Mina dokument</span></a>
+          <a class="ql-btn" href="#"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Semester­ansökan</span></a>
+          <a class="ql-btn" href="#"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 1.09h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg><span>Sjuk­anmälan</span></a>
+          <a class="ql-btn" href="#"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Policyer</span></a>
+          <a class="ql-btn" href="#"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Kontakter</span></a>
         </div>
       </div>
-      <div class="weather-row">
-        <div class="weather-item"><div class="label">Känns som</div><div class="val" id="wFeel">–</div></div>
-        <div class="weather-item"><div class="label">Vind</div><div class="val" id="wWind">–</div></div>
-        <div class="weather-item"><div class="label">Luftfukt.</div><div class="val" id="wHum">–</div></div>
+    </div>
+
+    <!-- Bibelord -->
+    <div class="card">
+      <div class="ch gold"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span>Dagens bibelord</span></div>
+      <div class="cb" style="display:flex;gap:14px;align-items:flex-start;">
+        <div style="flex:1;"><div class="bv" id="bibleVerse">Hämtar dagens bibelord...</div><div class="br" id="bibleRef"></div></div>
+        <div class="bi"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
       </div>
     </div>
-  </div>
 
-  <div class="card">
-    <div class="card-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#718B94" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      <span>Kommande händelser</span>
-    </div>
-    <div class="card-body">
-      <div class="events-item">
-        <div class="event-date"><div class="day">12</div><div class="month">maj</div></div>
-        <div class="event-info"><div class="title">Personalmöte</div><div class="time">kl 09:00 — Stora salen</div></div>
+    <!-- Rad 2: Väder + Händelser + GP -->
+    <div class="row2">
+      <div class="card">
+        <div class="ch"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span>Väder — Hönö</span></div>
+        <div class="cb">
+          <div style="display:flex;align-items:center;gap:10px;padding-bottom:8px;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C1A051" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <div><div class="wt" id="wTemp">–°</div><div class="wd" id="wDesc">Hämtar...</div><div class="wl">Hönö, Öckerö</div></div>
+          </div>
+          <div class="ws">
+            <div class="wsi"><div class="lbl">Känns</div><div class="val" id="wFeel">–</div></div>
+            <div class="wsi"><div class="lbl">Vind</div><div class="val" id="wWind">–</div></div>
+            <div class="wsi"><div class="lbl">Fukt</div><div class="val" id="wHum">–</div></div>
+          </div>
+        </div>
       </div>
-      <div class="events-item">
-        <div class="event-date"><div class="day">18</div><div class="month">maj</div></div>
-        <div class="event-info"><div class="title">Gudstjänst — Pingst</div><div class="time">kl 11:00 — Kyrkan</div></div>
+
+      <div class="card">
+        <div class="ch"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Händelser</span></div>
+        <div class="cb">
+          <div class="ei"><div class="ed"><div class="dy">12</div><div class="mn">maj</div></div><div><div class="et">Personalmöte</div><div class="etm">kl 09:00 — Stora salen</div></div></div>
+          <div class="ei"><div class="ed"><div class="dy">18</div><div class="mn">maj</div></div><div><div class="et">Gudstjänst — Pingst</div><div class="etm">kl 11:00 — Kyrkan</div></div></div>
+          <div class="ei"><div class="ed"><div class="dy">25</div><div class="mn">maj</div></div><div><div class="et">Styrelsemöte</div><div class="etm">kl 18:00 — Konferensrum</div></div></div>
+          <div class="ei"><div class="ed"><div class="dy">1</div><div class="mn">jun</div></div><div><div class="et">Sommaravslutning</div><div class="etm">kl 17:00 — Kyrkan</div></div></div>
+        </div>
       </div>
-      <div class="events-item">
-        <div class="event-date"><div class="day">25</div><div class="month">maj</div></div>
-        <div class="event-info"><div class="title">Styrelsemöte</div><div class="time">kl 18:00 — Konferensrum</div></div>
-      </div>
-      <div class="events-item">
-        <div class="event-date"><div class="day">1</div><div class="month">jun</div></div>
-        <div class="event-info"><div class="title">Sommaravslutning</div><div class="time">kl 17:00 — Kyrkan</div></div>
+
+      <div class="card">
+        <div class="ch"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg><span>GP</span></div>
+        <div class="cb" id="gpNews"><p class="loading">Hämtar nyheter...</p></div>
       </div>
     </div>
-  </div>
 
-  <div class="card">
-    <div class="card-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#718B94" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
-      <span>GP — Göteborg</span>
+    <!-- Rad 3: SVT + Tidningen + Bibliotek -->
+    <div class="row3">
+      <div class="card">
+        <div class="ch"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>SVT Väst</span></div>
+        <div class="cb" id="svtNews"><p class="loading">Hämtar nyheter...</p></div>
+      </div>
+      <div class="card">
+        <div class="ch"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg><span>Torslanda-Öckerötidningen</span></div>
+        <div class="cb" id="totNews"><p class="loading">Hämtar nyheter...</p></div>
+      </div>
+      <div class="card">
+        <div class="ch"><svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Mina bibliotek</span></div>
+        <div class="cb" style="padding:8px;">
+          <div class="lib-grid">
+            <a class="lib-card" href="#"><img src="https://nolebring.github.io/hmk-portal/Personalhandbok-bild.png" alt="Personalhandbok"></a>
+            <a class="lib-card" href="#"><img src="https://nolebring.github.io/hmk-portal/Uthyrning-bild.png" alt="Uthyrning"></a>
+            <a class="lib-card" href="#"><img src="https://nolebring.github.io/hmk-portal/Policys-bild.png" alt="Policys"></a>
+            <a class="lib-card" href="#"><img src="https://nolebring.github.io/hmk-portal/Sakerhet-bild.png" alt="Säkerhet"></a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-body" id="gpNews"><p class="loading">Hämtar nyheter...</p></div>
+
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#718B94" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-      <span>SVT Väst</span>
+  <!-- RIGHT -->
+  <div class="right-col">
+    <div class="lp">
+      <div class="lp-title">Hur gör jag för att...</div>
+      <a class="lp-item" href="https://www.skatteverket.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><div class="lp-txt">Deklarera & skattetabell</div><div class="lp-sub">Skatteverket</div></div></a>
+      <a class="lp-item" href="https://www.1177.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="lp-txt">Sjukvårdsrådgivning</div><div class="lp-sub">1177</div></div></a>
+      <a class="lp-item" href="https://www.vasttrafik.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><div class="lp-txt">Kollektivtrafik</div><div class="lp-sub">Västtrafik</div></div></a>
+      <a class="lp-item" href="https://www.smhi.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><div><div class="lp-txt">Väder & varningar</div><div class="lp-sub">SMHI</div></div></a>
+      <a class="lp-item" href="https://www.ockero.se/driftmeddelanden" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div><div><div class="lp-txt">Kommuninfo</div><div class="lp-sub">Öckerö kommun</div></div></a>
+      <a class="lp-item" href="https://www.equmeniakyrkan.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div><div class="lp-txt">Riksorganisationen</div><div class="lp-sub">Equmeniakyrkan</div></div></a>
+      <a class="lp-item" href="https://www.hitta.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div><div><div class="lp-txt">Hitta personer & företag</div><div class="lp-sub">Hitta.se</div></div></a>
+      <a class="lp-item" href="https://www.ica.se/artikel/nyttig-veckomeny/" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><div><div class="lp-txt">Veckans meny</div><div class="lp-sub">ICA</div></div></a>
+      <div class="lp-more">→ Visa fler länkar</div>
     </div>
-    <div class="card-body" id="svtNews"><p class="loading">Hämtar nyheter...</p></div>
-  </div>
 
-  <div class="card">
-    <div class="card-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#718B94" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-      <span>Torslanda-Öckerötidningen</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <a class="lib-card" href="#"><img src="https://nolebring.github.io/hmk-portal/Kontakter-bild.png" alt="Kontakter"></a>
+      <a class="lib-card" href="#"><img src="https://nolebring.github.io/hmk-portal/Övrigt-bild.png" alt="Övrigt"></a>
     </div>
-    <div class="card-body" id="totNews"><p class="loading">Hämtar nyheter...</p></div>
   </div>
-
 </div>
 
 <script>
-const d = new Date();
-const days = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
-const months = ['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
-document.getElementById('dateChip').textContent = days[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
-
+const d=new Date();
+const days=['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
+const months=['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
+document.getElementById('dateChip').textContent=days[d.getDay()]+' '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
 fetch('https://api.open-meteo.com/v1/forecast?latitude=57.71&longitude=11.60&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code&wind_speed_unit=ms&timezone=Europe%2FStockholm')
-  .then(r => r.json())
-  .then(data => {
-    const c = data.current;
-    const code = c.weather_code;
-    let desc = 'Klart';
-    if(code >= 1 && code <= 3) desc = 'Delvis molnigt';
-    if(code >= 45 && code <= 48) desc = 'Dimma';
-    if(code >= 51 && code <= 67) desc = 'Regn';
-    if(code >= 71 && code <= 77) desc = 'Snö';
-    if(code >= 80 && code <= 82) desc = 'Regnskurar';
-    if(code >= 95) desc = 'Åska';
-    document.getElementById('wTemp').textContent = Math.round(c.temperature_2m) + '°';
-    document.getElementById('wDesc').textContent = desc;
-    document.getElementById('wFeel').textContent = Math.round(c.apparent_temperature) + '°';
-    document.getElementById('wWind').textContent = Math.round(c.wind_speed_10m) + ' m/s';
-    document.getElementById('wHum').textContent = Math.round(c.relative_humidity_2m) + '%';
-  }).catch(() => { document.getElementById('wDesc').textContent = 'Kunde inte hämta väder'; });
-
-fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.bible.com/sv/verse-of-the-day'))
-  .then(r => r.json())
-  .then(data => {
-    const html = data.contents;
-    const descMatch = html.match(/meta-og:description[^"]*"([^"]+)"/);
-    const titleMatch = html.match(/<title>Dagens vers - ([^<]+)<\/title>/);
-    if(descMatch) {
-      const full = descMatch[1];
-      const refMatch = full.match(/^([^\s].*?)\s+(Jag|Han|Hon|Det|De|Du|Ni|Vi|Ty|Var|Men|Och|För|Om|Se|Då|Nu|Så|På|I |Av|Att|En|Ett|All|Gud|Herr|Jesus|Petrus|Paulus)/);
-      let ref = '', verse = full;
-      if(refMatch) { ref = refMatch[1].trim(); verse = full.substring(ref.length).trim(); }
-      else if(titleMatch) { ref = titleMatch[1]; }
-      document.getElementById('bibleVerse').textContent = '"' + verse + '"';
-      document.getElementById('bibleRef').textContent = ref || '';
-    } else {
-      document.getElementById('bibleVerse').textContent = '"Jag vill ge dig insikt och lära dig den väg du skall gå, jag vill ge dig råd, min blick skall följa dig."';
-      document.getElementById('bibleRef').textContent = 'Psaltaren 32:8 (B2000)';
+  .then(r=>r.json()).then(data=>{
+    const c=data.current,code=c.weather_code;
+    let desc='Klart';
+    if(code>=1&&code<=3)desc='Delvis molnigt';
+    if(code>=45&&code<=48)desc='Dimma';
+    if(code>=51&&code<=67)desc='Regn';
+    if(code>=71&&code<=77)desc='Snö';
+    if(code>=80&&code<=82)desc='Regnskurar';
+    if(code>=95)desc='Åska';
+    document.getElementById('wTemp').textContent=Math.round(c.temperature_2m)+'°';
+    document.getElementById('wDesc').textContent=desc;
+    document.getElementById('wFeel').textContent=Math.round(c.apparent_temperature)+'°';
+    document.getElementById('wWind').textContent=Math.round(c.wind_speed_10m)+' m/s';
+    document.getElementById('wHum').textContent=Math.round(c.relative_humidity_2m)+'%';
+  }).catch(()=>{document.getElementById('wDesc').textContent='Kunde inte hämta';});
+fetch('https://api.allorigins.win/get?url='+encodeURIComponent('https://www.bible.com/sv/verse-of-the-day'))
+  .then(r=>r.json()).then(data=>{
+    const html=data.contents;
+    const dm=html.match(/meta-og:description[^"]*"([^"]+)"/);
+    const tm=html.match(/<title>Dagens vers - ([^<]+)<\/title>/);
+    if(dm){
+      const full=dm[1];
+      const rm=full.match(/^([^\s].*?)\s+(Jag|Han|Hon|Det|De|Du|Ni|Vi|Ty|Var|Men|Och|För|Om|Se|Då|Nu|Så|På|I |Av|Att|En|Ett|All|Gud|Herr|Jesus|Petrus|Paulus)/);
+      let ref='',verse=full;
+      if(rm){ref=rm[1].trim();verse=full.substring(ref.length).trim();}
+      else if(tm){ref=tm[1];}
+      document.getElementById('bibleVerse').textContent='"'+verse+'"';
+      document.getElementById('bibleRef').textContent=ref||'';
+    }else{
+      document.getElementById('bibleVerse').textContent='"Jag vill ge dig insikt och lära dig den väg du skall gå."';
+      document.getElementById('bibleRef').textContent='Psaltaren 32:8';
     }
-  }).catch(() => {
-    document.getElementById('bibleVerse').textContent = '"Jag vill ge dig insikt och lära dig den väg du skall gå, jag vill ge dig råd, min blick skall följa dig."';
-    document.getElementById('bibleRef').textContent = 'Psaltaren 32:8 (B2000)';
-  });
-
-const PROXY = 'https://api.allorigins.win/get?url=';
-function timeAgo(dateStr) {
-  const diff = (Date.now() - new Date(dateStr)) / 60000;
-  if(diff < 60) return Math.round(diff) + ' min sedan';
-  if(diff < 1440) return Math.round(diff/60) + ' tim sedan';
-  return Math.round(diff/1440) + ' dag(ar) sedan';
-}
-function parseAndRender(xml, elId, source, maxItems) {
-  try {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xml, 'text/xml');
-    const items = Array.from(doc.querySelectorAll('item')).slice(0, maxItems);
-    if(!items.length) throw new Error('inga items');
-    document.getElementById(elId).innerHTML = items.map(item => {
-      const title = item.querySelector('title')?.textContent || '';
-      const link = item.querySelector('link')?.textContent || '#';
-      const pubDate = item.querySelector('pubDate')?.textContent || '';
-      const ago = pubDate ? timeAgo(pubDate) : '';
-      return '<div class="news-item"><div class="news-source">' + source + '</div><div class="news-title"><a href="' + link + '" target="_blank">' + title + '</a></div>' + (ago ? '<div class="news-time">' + ago + '</div>' : '') + '</div>';
+  }).catch(()=>{document.getElementById('bibleVerse').textContent='"Jag vill ge dig insikt och lära dig den väg du skall gå."';document.getElementById('bibleRef').textContent='Psaltaren 32:8';});
+const PROXY='https://api.allorigins.win/get?url=';
+function timeAgo(ds){const diff=(Date.now()-new Date(ds))/60000;if(diff<60)return Math.round(diff)+' min sedan';if(diff<1440)return Math.round(diff/60)+' tim sedan';return Math.round(diff/1440)+' dag(ar) sedan';}
+function parseRender(xml,elId,src,max){
+  try{
+    const doc=new DOMParser().parseFromString(xml,'text/xml');
+    const items=Array.from(doc.querySelectorAll('item')).slice(0,max);
+    if(!items.length)throw new Error();
+    document.getElementById(elId).innerHTML=items.map(i=>{
+      const t=i.querySelector('title')?.textContent||'';
+      const l=i.querySelector('link')?.textContent||'#';
+      const p=i.querySelector('pubDate')?.textContent||'';
+      return '<div class="ni"><div class="ns">'+src+'</div><div class="nt"><a href="'+l+'" target="_blank">'+t+'</a></div>'+(p?'<div class="ntm">'+timeAgo(p)+'</div>':'')+'</div>';
     }).join('');
-  } catch(e) {
-    document.getElementById(elId).innerHTML = '<p class="news-error">Kunde inte hämta nyheter just nu.</p>';
-  }
+  }catch(e){document.getElementById(elId).innerHTML='<p class="ne">Kunde inte hämta nyheter.</p>';}
 }
-function fetchRSS(url, elId, source, maxItems) {
-  fetch(PROXY + encodeURIComponent(url))
-    .then(r => r.json())
-    .then(data => parseAndRender(data.contents, elId, source, maxItems))
-    .catch(() => { document.getElementById(elId).innerHTML = '<p class="news-error">Kunde inte hämta nyheter just nu.</p>'; });
-}
-fetchRSS('https://www.gp.se/rss', 'gpNews', 'GP', 4);
-fetchRSS('https://www.svt.se/nyheter/lokalt/vast/rss.xml', 'svtNews', 'SVT Väst', 4);
-fetchRSS('https://www.tidningen.se/ockero-kommun/feed', 'totNews', 'Torslanda-Öckerötidningen', 4);
+function fetchRSS(url,elId,src,max){fetch(PROXY+encodeURIComponent(url)).then(r=>r.json()).then(d=>parseRender(d.contents,elId,src,max)).catch(()=>{document.getElementById(elId).innerHTML='<p class="ne">Kunde inte hämta nyheter.</p>';});}
+fetchRSS('https://www.gp.se/rss','gpNews','GP',4);
+fetchRSS('https://www.svt.se/nyheter/lokalt/vast/rss.xml','svtNews','SVT Väst',4);
+fetchRSS('https://www.tidningen.se/ockero-kommun/feed','totNews','Torslanda-Öckerötidningen',4);
 </script>
 </body>
 </html>
