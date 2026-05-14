@@ -139,15 +139,21 @@
     <div class="row2">
       <div class="card">
         <div class="ch"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span>Väder — Hönö</span></div>
-        <div class="cb">
-          <div style="display:flex;align-items:center;gap:10px;padding-bottom:8px;">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C1A051" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-            <div><div class="wt" id="wTemp">–°</div><div class="wd" id="wDesc">Hämtar...</div><div class="wl">Hönö, Öckerö</div></div>
+        <div class="cb" style="padding:0;">
+          <div style="position:relative;overflow:hidden;">
+            <img id="webcamImg" src="https://liveevent.nu/webbkamera/hono/hono_1_1280.jpg" alt="Webcam Hönö Klova" style="width:100%;display:block;max-height:140px;object-fit:cover;">
+            <div style="position:absolute;bottom:6px;right:8px;background:rgba(40,38,38,0.55);color:white;font-size:9px;padding:2px 7px;border-radius:99px;letter-spacing:0.05em;">LIVE — Hönö Klova</div>
           </div>
-          <div class="ws">
-            <div class="wsi"><div class="lbl">Känns</div><div class="val" id="wFeel">–</div></div>
-            <div class="wsi"><div class="lbl">Vind</div><div class="val" id="wWind">–</div></div>
-            <div class="wsi"><div class="lbl">Fukt</div><div class="val" id="wHum">–</div></div>
+          <div style="padding:10px 13px;">
+            <div style="display:flex;align-items:center;gap:10px;padding-bottom:7px;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C1A051" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              <div><div class="wt" id="wTemp">–°</div><div class="wd" id="wDesc">Hämtar...</div><div class="wl">Hönö, Öckerö</div></div>
+            </div>
+            <div class="ws">
+              <div class="wsi"><div class="lbl">Känns</div><div class="val" id="wFeel">–</div></div>
+              <div class="wsi"><div class="lbl">Vind</div><div class="val" id="wWind">–</div></div>
+              <div class="wsi"><div class="lbl">Fukt</div><div class="val" id="wHum">–</div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -197,14 +203,15 @@
   <div class="right-col">
     <div class="lp">
       <div class="lp-title">Hur gör jag för att...</div>
-      <a class="lp-item" href="https://www.skatteverket.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><div class="lp-txt">Deklarera & skattetabell</div><div class="lp-sub">Skatteverket</div></div></a>
-      <a class="lp-item" href="https://www.1177.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="lp-txt">Sjukvårdsrådgivning</div><div class="lp-sub">1177</div></div></a>
+      <a class="lp-item" href="https://www.skatteverket.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><div class="lp-txt">Deklarera &amp; skattetabell</div><div class="lp-sub">Skatteverket</div></div></a>
+      <a class="lp-item" href="https://www.1177.se/Vastra-Gotaland/" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="lp-txt">Sjukvårdsrådgivning</div><div class="lp-sub">1177</div></div></a>
       <a class="lp-item" href="https://www.vasttrafik.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><div class="lp-txt">Kollektivtrafik</div><div class="lp-sub">Västtrafik</div></div></a>
-      <a class="lp-item" href="https://www.smhi.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><div><div class="lp-txt">Väder & varningar</div><div class="lp-sub">SMHI</div></div></a>
+      <a class="lp-item" href="https://www.smhi.se/vader/prognoser-och-varningar/vaderprognos/q/%C3%96cker%C3%B6/H%C3%B6n%C3%B6/2705075" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><div><div class="lp-txt">Väder &amp; varningar</div><div class="lp-sub">SMHI — Hönö</div></div></a>
       <a class="lp-item" href="https://www.ockero.se/driftmeddelanden" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div><div><div class="lp-txt">Kommuninfo</div><div class="lp-sub">Öckerö kommun</div></div></a>
       <a class="lp-item" href="https://www.equmeniakyrkan.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div><div class="lp-txt">Riksorganisationen</div><div class="lp-sub">Equmeniakyrkan</div></div></a>
-      <a class="lp-item" href="https://www.hitta.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div><div><div class="lp-txt">Hitta personer & företag</div><div class="lp-sub">Hitta.se</div></div></a>
+      <a class="lp-item" href="https://www.hitta.se" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div><div><div class="lp-txt">Hitta personer &amp; företag</div><div class="lp-sub">Hitta.se</div></div></a>
       <a class="lp-item" href="https://www.ica.se/artikel/nyttig-veckomeny/" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><div><div class="lp-txt">Veckans meny</div><div class="lp-sub">ICA</div></div></a>
+      <a class="lp-item" href="https://liveevent.nu/webbkamera/hono/hono_1_1280.jpg" target="_blank"><div class="lp-icon"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div><div class="lp-txt">Webcam Hönö Klova</div><div class="lp-sub">Live-kamera</div></div></a>
       <div class="lp-more">→ Visa fler länkar</div>
     </div>
 
@@ -270,6 +277,8 @@ function parseRender(xml,elId,src,max){
   }catch(e){document.getElementById(elId).innerHTML='<p class="ne">Kunde inte hämta nyheter.</p>';}
 }
 function fetchRSS(url,elId,src,max){fetch(PROXY+encodeURIComponent(url)).then(r=>r.json()).then(d=>parseRender(d.contents,elId,src,max)).catch(()=>{document.getElementById(elId).innerHTML='<p class="ne">Kunde inte hämta nyheter.</p>';});}
+// Uppdatera webcam var 60:e sekund
+setInterval(()=>{const img=document.getElementById('webcamImg');if(img)img.src='https://liveevent.nu/webbkamera/hono/hono_1_1280.jpg?t='+Date.now();},60000);
 fetchRSS('https://www.gp.se/rss','gpNews','GP',4);
 fetchRSS('https://www.svt.se/nyheter/lokalt/vast/rss.xml','svtNews','SVT Väst',4);
 fetchRSS('https://www.tidningen.se/ockero-kommun/feed','totNews','Torslanda-Öckerötidningen',4);
